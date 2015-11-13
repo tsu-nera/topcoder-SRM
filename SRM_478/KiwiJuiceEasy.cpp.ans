@@ -14,25 +14,24 @@ using namespace std;
 
 class KiwiJuiceEasy {
     public:
-    vector<int> thePouring(vector<int> capacities, vector<int> bottles,
-                           vector<int> fromId, vector<int> toId) {
-      vector<int> result;
-      
-      for (int i = 0; i < (int)fromId.size(); i++) {
-        int fm = fromId[i];
-        int to = toId[i];
+    vector<int> thePouring(vector<int> capacities, vector<int> bottles, vector<int> fromId, vector<int> toId) {
 
-        if (capacities[to] > bottles[fm] + bottles[to]) {
-          bottles[to] += bottles[fm];
-          bottles[fm]  = 0;
-        }
-        else {
-          bottles[fm] = bottles[fm] - (capacities[to] - bottles[to]);
-          bottles[to] = capacities[to];
-        }
+      for (int i = 0; i < fromId.size(); i++) {
+          int f = fromId[i];
+          int t = toId[i];
+          int space = capacities[t] - bottles[t];
 
+          if(space >= bottles[f]) {
+              int vol = bottles[f];
+              bottles[t] += vol;
+              bottles[f] = 0;
+          }
+          else {
+              int vol = space;
+              bottles[t] += vol;
+              bottles[f] -= vol;
+          }
       }
-      
       return bottles;
     }
 };
@@ -135,7 +134,7 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
     }
     if (mainProcess) {
         cout << endl << "Passed : " << passed << "/" << cases << " cases" << endl;
-        int T = time(NULL) - 1432566645;
+        int T = time(NULL) - 1447332420;
         double PT = T / 60.0, TT = 75.0;
         cout << "Time   : " << T / 60 << " minutes " << T % 60 << " secs" << endl;
         cout << "Score  : " << 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT)) << " points" << endl;
