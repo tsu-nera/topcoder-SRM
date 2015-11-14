@@ -9,13 +9,30 @@
 #include <sstream>
 #include <typeinfo>
 #include <fstream>
+#include <map>
 
 using namespace std;
 
 class InterestingParty {
     public:
     int bestInvitation(vector<string> first, vector<string> second) {
-        return 0;
+        map<string, int> dic;
+
+        for(int i = 0; i < first.size(); i++) {
+            dic[first[i]] = 0;
+            dic[second[i]] = 0;
+        }
+
+        for(int i = 0; i < first.size(); i++) {
+            dic[first[i]]++;
+            dic[second[i]]++;
+        }
+
+        int ans = 0;
+        for(auto it: dic) {
+            if(ans < it.second) ans = it.second;
+        }
+        return ans;
     }
 };
 
