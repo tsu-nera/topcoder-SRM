@@ -3,8 +3,9 @@
 
 * 参考リンク
   - 過去問アーカイブ: https://community.topcoder.com/tc?module=ProblemArchive
+  - https://community.topcoder.com/stat?c=round_overview
   - 過去問解説:  http://apps.topcoder.com/wiki/display/tc/Algorithm+Problem+Set+Analysis
 
-* 自分のページ
+
   - [[http://futurismo.biz/topcoder][目指せ！RedCoderへの道～アルゴリズムとデータ構造 (C++)～ | Futurismo]]
   - [[http://futurismo.biz/archives/5312][プログラミングコンテストのモチベーションをあげる良記事まとめ | Futurismo]]
