@@ -1,11 +1,21 @@
 * TopCoder対策リポジトリ
-  - https://github.com/tsu-nera/topcoder-SRM
+  https://github.com/tsu-nera/topcoder-SRM
+
+  - Profile: https://www.topcoder.com/members/tsu_nera/
+  - レートグラフ: https://www.topcoder.com/members/tsu_nera/details/?track=DATA_SCIENCE&subTrack=SRM
+  - 過去の戦歴: https://competitiveprogramming.info/topcoder/srm/history/tsu_nera
 
 * 参考リンク
   - 過去問アーカイブ: https://community.topcoder.com/tc?module=ProblemArchive
   - https://community.topcoder.com/stat?c=round_overview
   - 過去問解説:  http://apps.topcoder.com/wiki/display/tc/Algorithm+Problem+Set+Analysis
 
+  - アルゴリズムの可視化 http://ja.visualgo.net/
 
+* My Site(Futurismo)
   - [[http://futurismo.biz/topcoder][目指せ！RedCoderへの道～アルゴリズムとデータ構造 (C++)～ | Futurismo]]
   - [[http://futurismo.biz/archives/5312][プログラミングコンテストのモチベーションをあげる良記事まとめ | Futurismo]]
+
+** python
+   - [[http://futurismo.biz/archives/5287][リスト探索(線形探索・二分探索) – Python | Futurismo]]
+   - [[http://futurismo.biz/archives/5146][ソートアルゴリズムのまとめと実装（Python) | Futurismo]]
