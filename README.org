@@ -19,3 +19,4 @@
 ** python
    - [[http://futurismo.biz/archives/5287][リスト探索(線形探索・二分探索) – Python | Futurismo]]
    - [[http://futurismo.biz/archives/5146][ソートアルゴリズムのまとめと実装（Python) | Futurismo]]
+     

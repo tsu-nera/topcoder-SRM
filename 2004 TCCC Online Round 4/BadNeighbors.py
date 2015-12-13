@@ -1,40 +1,10 @@
 # -*- coding: utf-8 -*-
 import math,string,itertools,fractions,heapq,collections,re,array,bisect
 
-class ShortestPathWithMagic:
-    def getTime(self, adj, k):
-
-        n = len(adj)
-        d = [[0 for i in range(n)] for j in range(n)]
-
-        # convert string to number
-        for row in range(n):
-            for col in range(n):
-                d[row][col] = int(adj[row][col])
-
-        minCost = [[float('inf') for j in range(k + 1)] for i in range(n)]
-
-        pq = []
-        heapq.heappush(pq, (0, 0, 0))
-
-        while len(pq) != 0:
-            cost, ind, cnt = heapq.heappop(pq)
-
-            if minCost[ind][cnt] > cost:
-                minCost[ind][cnt] = cost
-
-                for i in range(n):
-                    if i == ind:
-                        continue
-                    heapq.heappush(pq, (d[ind][i] + cost, i, cnt))
-                    if cnt < k:
-                        heapq.heappush(pq, (d[ind][i] * 0.5 + cost, i, cnt + 1))
-
-        ret = float('inf')
-        for i in range(k + 1):
-            ret = min(ret, minCost[1][i])
-
-        return ret
+class BadNeighbors:
+    def maxDonations(self, donations):
+        print(donations)
+        return 0
 
 # CUT begin
 # TEST CODE FOR PYTHON {{{
@@ -64,12 +34,12 @@ def pretty_str(x):
     else:
         return str(x)
 
-def do_test(dist, k, __expected):
+def do_test(donations, __expected):
     startTime = time.time()
-    instance = ShortestPathWithMagic()
+    instance = BadNeighbors()
     exception = None
     try:
-        __result = instance.getTime(dist, k);
+        __result = instance.maxDonations(donations);
     except:
         import traceback
         exception = traceback.format_exc()
@@ -90,36 +60,35 @@ def do_test(dist, k, __expected):
         return 0
 
 def run_tests():
-    sys.stdout.write("ShortestPathWithMagic (500 Points)\n\n")
+    sys.stdout.write("BadNeighbors (250 Points)\n\n")
 
     passed = cases = 0
     case_set = set()
     for arg in sys.argv[1:]:
         case_set.add(int(arg))
 
-    with open("ShortestPathWithMagic.sample", "r") as f:
+    with open("BadNeighbors.sample", "r") as f:
         while True:
             label = f.readline()
             if not label.startswith("--"): break
 
-            dist = []
+            donations = []
             for i in range(0, int(f.readline())):
-                dist.append(f.readline().rstrip())
-            dist = tuple(dist)
-            k = int(f.readline().rstrip())
+                donations.append(int(f.readline().rstrip()))
+            donations = tuple(donations)
             f.readline()
-            __answer = float(f.readline().rstrip())
+            __answer = int(f.readline().rstrip())
 
             cases += 1
             if len(case_set) > 0 and (cases - 1) in case_set: continue
             sys.stdout.write("  Testcase #%d ... " % (cases - 1))
-            passed += do_test(dist, k, __answer)
+            passed += do_test(donations, __answer)
 
     sys.stdout.write("\nPassed : %d / %d cases\n" % (passed, cases))
 
-    T = time.time() - 1449749792
+    T = time.time() - 1449916228
     PT, TT = (T / 60.0, 75.0)
-    points = 500 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
+    points = 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
     sys.stdout.write("Time   : %d minutes %d secs\n" % (int(T/60), T%60))
     sys.stdout.write("Score  : %.2f points\n" % points)
 

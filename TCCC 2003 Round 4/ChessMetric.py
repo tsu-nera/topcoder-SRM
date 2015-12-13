@@ -1,40 +1,24 @@
 # -*- coding: utf-8 -*-
 import math,string,itertools,fractions,heapq,collections,re,array,bisect
 
-class ShortestPathWithMagic:
-    def getTime(self, adj, k):
+class ChessMetric:
+    def howMany(self, size, start, end, numMoves):
+        dx = [1, 1, 1, 0, -1, -1, -1, 0, 2, 1, -1, -2, -2, -1, 1, 2]
+        dy = [1, 0, -1, -1, -1, 0, 1, 1, -1, -2, -2, -1, 1, 2, 2, 1]
+        dp = [[[0 for i in range(55)] for j in range(100)] for k in range(100)]
 
-        n = len(adj)
-        d = [[0 for i in range(n)] for j in range(n)]
+        dp[start[0]][start[1]][0] = 1
 
-        # convert string to number
-        for row in range(n):
-            for col in range(n):
-                d[row][col] = int(adj[row][col])
+        for i in range(1, numMoves + 1):
+            for x in range(size):
+                for y in range(size):
+                    for j in range(16):
+                        nx = x + dx[j]
+                        ny = y + dy[j]
+                        if nx >= 0 and ny >= 0 and nx < size and ny < size:
+                            dp[nx][ny][i] += dp[x][y][i - 1]
 
-        minCost = [[float('inf') for j in range(k + 1)] for i in range(n)]
-
-        pq = []
-        heapq.heappush(pq, (0, 0, 0))
-
-        while len(pq) != 0:
-            cost, ind, cnt = heapq.heappop(pq)
-
-            if minCost[ind][cnt] > cost:
-                minCost[ind][cnt] = cost
-
-                for i in range(n):
-                    if i == ind:
-                        continue
-                    heapq.heappush(pq, (d[ind][i] + cost, i, cnt))
-                    if cnt < k:
-                        heapq.heappush(pq, (d[ind][i] * 0.5 + cost, i, cnt + 1))
-
-        ret = float('inf')
-        for i in range(k + 1):
-            ret = min(ret, minCost[1][i])
-
-        return ret
+        return dp[end[0]][end[1]][numMoves]
 
 # CUT begin
 # TEST CODE FOR PYTHON {{{
@@ -64,12 +48,12 @@ def pretty_str(x):
     else:
         return str(x)
 
-def do_test(dist, k, __expected):
+def do_test(size, start, end, numMoves, __expected):
     startTime = time.time()
-    instance = ShortestPathWithMagic()
+    instance = ChessMetric()
     exception = None
     try:
-        __result = instance.getTime(dist, k);
+        __result = instance.howMany(size, start, end, numMoves);
     except:
         import traceback
         exception = traceback.format_exc()
@@ -90,36 +74,41 @@ def do_test(dist, k, __expected):
         return 0
 
 def run_tests():
-    sys.stdout.write("ShortestPathWithMagic (500 Points)\n\n")
+    sys.stdout.write("ChessMetric (250 Points)\n\n")
 
     passed = cases = 0
     case_set = set()
     for arg in sys.argv[1:]:
         case_set.add(int(arg))
 
-    with open("ShortestPathWithMagic.sample", "r") as f:
+    with open("ChessMetric.sample", "r") as f:
         while True:
             label = f.readline()
             if not label.startswith("--"): break
 
-            dist = []
+            size = int(f.readline().rstrip())
+            start = []
             for i in range(0, int(f.readline())):
-                dist.append(f.readline().rstrip())
-            dist = tuple(dist)
-            k = int(f.readline().rstrip())
+                start.append(int(f.readline().rstrip()))
+            start = tuple(start)
+            end = []
+            for i in range(0, int(f.readline())):
+                end.append(int(f.readline().rstrip()))
+            end = tuple(end)
+            numMoves = int(f.readline().rstrip())
             f.readline()
-            __answer = float(f.readline().rstrip())
+            __answer = int(f.readline().rstrip())
 
             cases += 1
             if len(case_set) > 0 and (cases - 1) in case_set: continue
             sys.stdout.write("  Testcase #%d ... " % (cases - 1))
-            passed += do_test(dist, k, __answer)
+            passed += do_test(size, start, end, numMoves, __answer)
 
     sys.stdout.write("\nPassed : %d / %d cases\n" % (passed, cases))
 
-    T = time.time() - 1449749792
+    T = time.time() - 1449996276
     PT, TT = (T / 60.0, 75.0)
-    points = 500 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
+    points = 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
     sys.stdout.write("Time   : %d minutes %d secs\n" % (int(T/60), T%60))
     sys.stdout.write("Score  : %.2f points\n" % points)
 

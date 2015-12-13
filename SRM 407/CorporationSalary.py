@@ -1,39 +1,31 @@
 # -*- coding: utf-8 -*-
 import math,string,itertools,fractions,heapq,collections,re,array,bisect
 
-class ShortestPathWithMagic:
-    def getTime(self, adj, k):
+class CorporationSalary:
 
-        n = len(adj)
-        d = [[0 for i in range(n)] for j in range(n)]
+    def getSalary(self, i):
+        if self.dp[i] != 0:
+            return self.dp[i]
 
-        # convert string to number
-        for row in range(n):
-            for col in range(n):
-                d[row][col] = int(adj[row][col])
+        ret = 0
+        for j in range(self.N):
+            if self.relations[i][j] == 'Y':
+                ret += self.getSalary(j)
 
-        minCost = [[float('inf') for j in range(k + 1)] for i in range(n)]
+        if ret == 0:
+            ret = 1
+        self.dp[i] = ret
 
-        pq = []
-        heapq.heappush(pq, (0, 0, 0))
+        return ret
 
-        while len(pq) != 0:
-            cost, ind, cnt = heapq.heappop(pq)
+    def totalSalary(self, relations):
+        ret = 0
+        self.N = len(relations)
+        self.dp = [0] * self.N
+        self.relations = relations
 
-            if minCost[ind][cnt] > cost:
-                minCost[ind][cnt] = cost
-
-                for i in range(n):
-                    if i == ind:
-                        continue
-                    heapq.heappush(pq, (d[ind][i] + cost, i, cnt))
-                    if cnt < k:
-                        heapq.heappush(pq, (d[ind][i] * 0.5 + cost, i, cnt + 1))
-
-        ret = float('inf')
-        for i in range(k + 1):
-            ret = min(ret, minCost[1][i])
-
+        for i in range(self.N):
+            ret += self.getSalary(i)
         return ret
 
 # CUT begin
@@ -64,12 +56,12 @@ def pretty_str(x):
     else:
         return str(x)
 
-def do_test(dist, k, __expected):
+def do_test(relations, __expected):
     startTime = time.time()
-    instance = ShortestPathWithMagic()
+    instance = CorporationSalary()
     exception = None
     try:
-        __result = instance.getTime(dist, k);
+        __result = instance.totalSalary(relations);
     except:
         import traceback
         exception = traceback.format_exc()
@@ -90,34 +82,33 @@ def do_test(dist, k, __expected):
         return 0
 
 def run_tests():
-    sys.stdout.write("ShortestPathWithMagic (500 Points)\n\n")
+    sys.stdout.write("CorporationSalary (500 Points)\n\n")
 
     passed = cases = 0
     case_set = set()
     for arg in sys.argv[1:]:
         case_set.add(int(arg))
 
-    with open("ShortestPathWithMagic.sample", "r") as f:
+    with open("CorporationSalary.sample", "r") as f:
         while True:
             label = f.readline()
             if not label.startswith("--"): break
 
-            dist = []
+            relations = []
             for i in range(0, int(f.readline())):
-                dist.append(f.readline().rstrip())
-            dist = tuple(dist)
-            k = int(f.readline().rstrip())
+                relations.append(f.readline().rstrip())
+            relations = tuple(relations)
             f.readline()
-            __answer = float(f.readline().rstrip())
+            __answer = int(f.readline().rstrip())
 
             cases += 1
             if len(case_set) > 0 and (cases - 1) in case_set: continue
             sys.stdout.write("  Testcase #%d ... " % (cases - 1))
-            passed += do_test(dist, k, __answer)
+            passed += do_test(relations, __answer)
 
     sys.stdout.write("\nPassed : %d / %d cases\n" % (passed, cases))
 
-    T = time.time() - 1449749792
+    T = time.time() - 1449913546
     PT, TT = (T / 60.0, 75.0)
     points = 500 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
     sys.stdout.write("Time   : %d minutes %d secs\n" % (int(T/60), T%60))
