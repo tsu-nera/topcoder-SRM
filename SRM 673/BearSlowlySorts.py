@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 import math,string,itertools,fractions,heapq,collections,re,array,bisect
 
-class BearSong:
-    def countRareNotes(self, notes):
-        m = {}
+class BearSlowlySorts:
+    def minMoves(self, w):
+        mn = min(w)
+        mx = max(w)
 
-        for i in notes:
-            if i in m:
-                m[i] += 1
+        w = list(w)
+        if w == sorted(w):
+            return 0
+        else:
+            if mn == w[-1] and mx == w[0]:
+                return 3
+            elif mx == w[-1] or mn == w[0]:
+                return 1
             else:
-                m[i] = 1
-
-        cnt = 0
-        for i in m:
-            if m[i] == 1:
-                cnt += 1
-        return cnt
+                return 2
 
 # CUT begin
 # TEST CODE FOR PYTHON {{{
@@ -45,12 +45,12 @@ def pretty_str(x):
     else:
         return str(x)
 
-def do_test(notes, __expected):
+def do_test(w, __expected):
     startTime = time.time()
-    instance = BearSong()
+    instance = BearSlowlySorts()
     exception = None
     try:
-        __result = instance.countRareNotes(notes);
+        __result = instance.minMoves(w);
     except:
         import traceback
         exception = traceback.format_exc()
@@ -71,35 +71,35 @@ def do_test(notes, __expected):
         return 0
 
 def run_tests():
-    sys.stdout.write("BearSong (250 Points)\n\n")
+    sys.stdout.write("BearSlowlySorts (500 Points)\n\n")
 
     passed = cases = 0
     case_set = set()
     for arg in sys.argv[1:]:
         case_set.add(int(arg))
 
-    with open("BearSong.sample", "r") as f:
+    with open("BearSlowlySorts.sample", "r") as f:
         while True:
             label = f.readline()
             if not label.startswith("--"): break
 
-            notes = []
+            w = []
             for i in range(0, int(f.readline())):
-                notes.append(int(f.readline().rstrip()))
-            notes = tuple(notes)
+                w.append(int(f.readline().rstrip()))
+            w = tuple(w)
             f.readline()
             __answer = int(f.readline().rstrip())
 
             cases += 1
             if len(case_set) > 0 and (cases - 1) in case_set: continue
             sys.stdout.write("  Testcase #%d ... " % (cases - 1))
-            passed += do_test(notes, __answer)
+            passed += do_test(w, __answer)
 
     sys.stdout.write("\nPassed : %d / %d cases\n" % (passed, cases))
 
-    T = time.time() - 1448975562
+    T = time.time() - 1450355165
     PT, TT = (T / 60.0, 75.0)
-    points = 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
+    points = 500 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
     sys.stdout.write("Time   : %d minutes %d secs\n" % (int(T/60), T%60))
     sys.stdout.write("Score  : %.2f points\n" % points)
 

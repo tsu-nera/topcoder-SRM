@@ -1,21 +1,9 @@
 # -*- coding: utf-8 -*-
 import math,string,itertools,fractions,heapq,collections,re,array,bisect
 
-class BearSong:
-    def countRareNotes(self, notes):
-        m = {}
-
-        for i in notes:
-            if i in m:
-                m[i] += 1
-            else:
-                m[i] = 1
-
-        cnt = 0
-        for i in m:
-            if m[i] == 1:
-                cnt += 1
-        return cnt
+class StockHistory:
+    def maximumEarnings(self, initialInvestment, monthlyContribution, stockPrices):
+        return 0
 
 # CUT begin
 # TEST CODE FOR PYTHON {{{
@@ -45,12 +33,12 @@ def pretty_str(x):
     else:
         return str(x)
 
-def do_test(notes, __expected):
+def do_test(initialInvestment, monthlyContribution, stockPrices, __expected):
     startTime = time.time()
-    instance = BearSong()
+    instance = StockHistory()
     exception = None
     try:
-        __result = instance.countRareNotes(notes);
+        __result = instance.maximumEarnings(initialInvestment, monthlyContribution, stockPrices);
     except:
         import traceback
         exception = traceback.format_exc()
@@ -71,35 +59,37 @@ def do_test(notes, __expected):
         return 0
 
 def run_tests():
-    sys.stdout.write("BearSong (250 Points)\n\n")
+    sys.stdout.write("StockHistory (1000 Points)\n\n")
 
     passed = cases = 0
     case_set = set()
     for arg in sys.argv[1:]:
         case_set.add(int(arg))
 
-    with open("BearSong.sample", "r") as f:
+    with open("StockHistory.sample", "r") as f:
         while True:
             label = f.readline()
             if not label.startswith("--"): break
 
-            notes = []
+            initialInvestment = int(f.readline().rstrip())
+            monthlyContribution = int(f.readline().rstrip())
+            stockPrices = []
             for i in range(0, int(f.readline())):
-                notes.append(int(f.readline().rstrip()))
-            notes = tuple(notes)
+                stockPrices.append(f.readline().rstrip())
+            stockPrices = tuple(stockPrices)
             f.readline()
             __answer = int(f.readline().rstrip())
 
             cases += 1
             if len(case_set) > 0 and (cases - 1) in case_set: continue
             sys.stdout.write("  Testcase #%d ... " % (cases - 1))
-            passed += do_test(notes, __answer)
+            passed += do_test(initialInvestment, monthlyContribution, stockPrices, __answer)
 
     sys.stdout.write("\nPassed : %d / %d cases\n" % (passed, cases))
 
-    T = time.time() - 1448975562
+    T = time.time() - 1450250858
     PT, TT = (T / 60.0, 75.0)
-    points = 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
+    points = 1000 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
     sys.stdout.write("Time   : %d minutes %d secs\n" % (int(T/60), T%60))
     sys.stdout.write("Score  : %.2f points\n" % points)
 

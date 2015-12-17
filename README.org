@@ -12,6 +12,10 @@
 
   - アルゴリズムの可視化 http://ja.visualgo.net/
 
+** 他のブログ
+   - kmjp's blog http://kmjp.hatenablog.jp/archive/category/SRM
+   - 
+
 * My Site(Futurismo)
   - [[http://futurismo.biz/topcoder][目指せ！RedCoderへの道～アルゴリズムとデータ構造 (C++)～ | Futurismo]]
   - [[http://futurismo.biz/archives/5312][プログラミングコンテストのモチベーションをあげる良記事まとめ | Futurismo]]
