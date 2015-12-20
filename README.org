@@ -31,6 +31,7 @@
 * My Site(Futurismo)
   - [[http://futurismo.biz/topcoder][目指せ！RedCoderへの道～アルゴリズムとデータ構造 (C++)～ | Futurismo]]
   - [[http://futurismo.biz/archives/5312][プログラミングコンテストのモチベーションをあげる良記事まとめ | Futurismo]]
+  - [[http://futurismo.biz/archives/5552][プロコンをはじめたので今後の対策方法について考えた | Futurismo]]
 
 ** python
    - [[http://futurismo.biz/archives/5287][リスト探索(線形探索・二分探索) – Python | Futurismo]]

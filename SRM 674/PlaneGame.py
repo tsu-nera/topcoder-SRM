@@ -3,6 +3,11 @@ import math,string,itertools,fractions,heapq,collections,re,array,bisect
 
 class PlaneGame:
     def bestShot(self, x, y):
+        if len(x) < 3:
+            return len(x)
+
+        "解けない..."
+
         return 0
 
 # CUT begin
