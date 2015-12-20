@@ -1,0 +1,18 @@
+* アルゴリズム
+
+* WL-Algorithm
+  ボードゲームでどちらが先に勝つかを決定するアルゴリズム.
+  - https://www.topcoder.com/community/data-science/data-science-tutorials/algorithm-games/
+
+#+begin_src C++
+boolean isWinning(State pos){
+  State[] nextStates = { posから到達できる全ての次の状態 };
+  for(State s : nextStates){
+    if(!isWinning(s)) return true;
+  }
+  return false;
+}
+#+end_src
+
+  - 相手を必ず負けさせるような手が存在するなら現在の位置では勝ち決定。
+  - そのような手がないないのであれば負け。

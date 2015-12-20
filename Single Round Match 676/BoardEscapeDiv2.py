@@ -1,29 +1,21 @@
 # -*- coding: utf-8 -*-
 import math,string,itertools,fractions,heapq,collections,re,array,bisect
 
-allchar = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-class SubstitutionCipher:
-    def notIn(self, s):
-        return "A"
+class BoardEscapeDiv2:
+    def nextTurn(self, turn):
+        if turn == "Alice":
+            return "Bob"
+        else:
+            return "Alice"
 
-    def decode(self, a, b, y):
-        cipher = {}
+    def findWinner(self, s, k):
+        turn = "Alice"
 
-        for i in range(len(a)):
-            cipher[b[i]] = a[i]
+        while k > 0:
+            turn = self.nextTurn(turn)
+            k -= 1
 
-        if len(cipher) == 25:
-            remain_a = list(set(allchar) - set(a))[0]
-            remain_b = list(set(allchar) - set(b))[0]
-            cipher[remain_b] = remain_a
-
-        x = ""
-        for i in range(len(y)):
-            if y[i] not in cipher:
-                return ""
-            x += cipher[y[i]]
-
-        return x
+        return turn
 
 # CUT begin
 # TEST CODE FOR PYTHON {{{
@@ -53,12 +45,12 @@ def pretty_str(x):
     else:
         return str(x)
 
-def do_test(a, b, y, __expected):
+def do_test(s, k, __expected):
     startTime = time.time()
-    instance = SubstitutionCipher()
+    instance = BoardEscapeDiv2()
     exception = None
     try:
-        __result = instance.decode(a, b, y);
+        __result = instance.findWinner(s, k);
     except:
         import traceback
         exception = traceback.format_exc()
@@ -79,34 +71,36 @@ def do_test(a, b, y, __expected):
         return 0
 
 def run_tests():
-    sys.stdout.write("SubstitutionCipher (500 Points)\n\n")
+    sys.stdout.write("BoardEscapeDiv2 (550 Points)\n\n")
 
     passed = cases = 0
     case_set = set()
     for arg in sys.argv[1:]:
         case_set.add(int(arg))
 
-    with open("SubstitutionCipher.sample", "r") as f:
+    with open("BoardEscapeDiv2.sample", "r") as f:
         while True:
             label = f.readline()
             if not label.startswith("--"): break
 
-            a = f.readline().rstrip()
-            b = f.readline().rstrip()
-            y = f.readline().rstrip()
+            s = []
+            for i in range(0, int(f.readline())):
+                s.append(f.readline().rstrip())
+            s = tuple(s)
+            k = int(f.readline().rstrip())
             f.readline()
             __answer = f.readline().rstrip()
 
             cases += 1
             if len(case_set) > 0 and (cases - 1) in case_set: continue
             sys.stdout.write("  Testcase #%d ... " % (cases - 1))
-            passed += do_test(a, b, y, __answer)
+            passed += do_test(s, k, __answer)
 
     sys.stdout.write("\nPassed : %d / %d cases\n" % (passed, cases))
 
-    T = time.time() - 1450401482
+    T = time.time() - 1450456901
     PT, TT = (T / 60.0, 75.0)
-    points = 500 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
+    points = 550 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
     sys.stdout.write("Time   : %d minutes %d secs\n" % (int(T/60), T%60))
     sys.stdout.write("Score  : %.2f points\n" % points)
 

@@ -1,29 +1,23 @@
 # -*- coding: utf-8 -*-
 import math,string,itertools,fractions,heapq,collections,re,array,bisect
 
-allchar = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-class SubstitutionCipher:
-    def notIn(self, s):
-        return "A"
+MAXN = 1000
+memo = [-1 for i in range(MAXN + 1)]
 
-    def decode(self, a, b, y):
-        cipher = {}
+class TheNumberGameDivTwo:
+    def isWinning(self, n):
+        if (memo[n] != -1): return memo[n]
 
-        for i in range(len(a)):
-            cipher[b[i]] = a[i]
+        for i in range(2, n):
+            if n % i == 0:
+                if not self.isWinning(n - i):
+                    memo[n] = True
+                    return True
+        memo[n] = False
+        return False
 
-        if len(cipher) == 25:
-            remain_a = list(set(allchar) - set(a))[0]
-            remain_b = list(set(allchar) - set(b))[0]
-            cipher[remain_b] = remain_a
-
-        x = ""
-        for i in range(len(y)):
-            if y[i] not in cipher:
-                return ""
-            x += cipher[y[i]]
-
-        return x
+    def find(self, n):
+        return "John" if self.isWinning(n) else "Brus"
 
 # CUT begin
 # TEST CODE FOR PYTHON {{{
@@ -53,12 +47,12 @@ def pretty_str(x):
     else:
         return str(x)
 
-def do_test(a, b, y, __expected):
+def do_test(n, __expected):
     startTime = time.time()
-    instance = SubstitutionCipher()
+    instance = TheNumberGameDivTwo()
     exception = None
     try:
-        __result = instance.decode(a, b, y);
+        __result = instance.find(n);
     except:
         import traceback
         exception = traceback.format_exc()
@@ -79,32 +73,30 @@ def do_test(a, b, y, __expected):
         return 0
 
 def run_tests():
-    sys.stdout.write("SubstitutionCipher (500 Points)\n\n")
+    sys.stdout.write("TheNumberGameDivTwo (500 Points)\n\n")
 
     passed = cases = 0
     case_set = set()
     for arg in sys.argv[1:]:
         case_set.add(int(arg))
 
-    with open("SubstitutionCipher.sample", "r") as f:
+    with open("TheNumberGameDivTwo.sample", "r") as f:
         while True:
             label = f.readline()
             if not label.startswith("--"): break
 
-            a = f.readline().rstrip()
-            b = f.readline().rstrip()
-            y = f.readline().rstrip()
+            n = int(f.readline().rstrip())
             f.readline()
             __answer = f.readline().rstrip()
 
             cases += 1
             if len(case_set) > 0 and (cases - 1) in case_set: continue
             sys.stdout.write("  Testcase #%d ... " % (cases - 1))
-            passed += do_test(a, b, y, __answer)
+            passed += do_test(n, __answer)
 
     sys.stdout.write("\nPassed : %d / %d cases\n" % (passed, cases))
 
-    T = time.time() - 1450401482
+    T = time.time() - 1450434789
     PT, TT = (T / 60.0, 75.0)
     points = 500 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
     sys.stdout.write("Time   : %d minutes %d secs\n" % (int(T/60), T%60))

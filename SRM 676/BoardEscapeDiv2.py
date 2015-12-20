@@ -1,29 +1,44 @@
 # -*- coding: utf-8 -*-
 import math,string,itertools,fractions,heapq,collections,re,array,bisect
 
-allchar = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-class SubstitutionCipher:
-    def notIn(self, s):
-        return "A"
+MAXN = 200
 
-    def decode(self, a, b, y):
-        cipher = {}
+vx = [1, -1, 0, 0]
+vy = [0, 0, 1, -1]
+dp = [[[-1 for i in range(MAXN)] for j in range(MAXN)] for k in range(MAXN)]
 
-        for i in range(len(a)):
-            cipher[b[i]] = a[i]
+class BoardEscapeDiv2:
+    def isWinning(self, s, x, y, move):
+        n = len(s)
+        m = len(s[0])
 
-        if len(cipher) == 25:
-            remain_a = list(set(allchar) - set(a))[0]
-            remain_b = list(set(allchar) - set(b))[0]
-            cipher[remain_b] = remain_a
+        if move == 0: return False
+        if s[x][y] == 'E': return False
+        if dp[x][y][move] != -1: return dp[x][y][move]
 
-        x = ""
-        for i in range(len(y)):
-            if y[i] not in cipher:
-                return ""
-            x += cipher[y[i]]
+        for i in range(4):
+            nx = x + vx[i]
+            ny = y + vy[i]
+            if nx < 0 or ny < 0 or nx >= n or ny >= m or s[nx][ny] == '#':
+                continue
+            if not self.isWinning(s, nx, ny, move - 1):
+                dp[x][y][move] = True
+                return True
 
-        return x
+        dp[x][y][move] = False
+        return False
+
+    def findWinner(self, s, k):
+        n = len(s)
+        m = len(s[0])
+
+        for i in range(n):
+            for j in range(m):
+                if s[i][j] == 'T':
+                    x = i
+                    y = j
+
+        return "Alice" if self.isWinning(s, x, y, k) else "Bob"
 
 # CUT begin
 # TEST CODE FOR PYTHON {{{
@@ -53,12 +68,12 @@ def pretty_str(x):
     else:
         return str(x)
 
-def do_test(a, b, y, __expected):
+def do_test(s, k, __expected):
     startTime = time.time()
-    instance = SubstitutionCipher()
+    instance = BoardEscapeDiv2()
     exception = None
     try:
-        __result = instance.decode(a, b, y);
+        __result = instance.findWinner(s, k);
     except:
         import traceback
         exception = traceback.format_exc()
@@ -79,34 +94,36 @@ def do_test(a, b, y, __expected):
         return 0
 
 def run_tests():
-    sys.stdout.write("SubstitutionCipher (500 Points)\n\n")
+    sys.stdout.write("BoardEscapeDiv2 (550 Points)\n\n")
 
     passed = cases = 0
     case_set = set()
     for arg in sys.argv[1:]:
         case_set.add(int(arg))
 
-    with open("SubstitutionCipher.sample", "r") as f:
+    with open("BoardEscapeDiv2.sample", "r") as f:
         while True:
             label = f.readline()
             if not label.startswith("--"): break
 
-            a = f.readline().rstrip()
-            b = f.readline().rstrip()
-            y = f.readline().rstrip()
+            s = []
+            for i in range(0, int(f.readline())):
+                s.append(f.readline().rstrip())
+            s = tuple(s)
+            k = int(f.readline().rstrip())
             f.readline()
             __answer = f.readline().rstrip()
 
             cases += 1
             if len(case_set) > 0 and (cases - 1) in case_set: continue
             sys.stdout.write("  Testcase #%d ... " % (cases - 1))
-            passed += do_test(a, b, y, __answer)
+            passed += do_test(s, k, __answer)
 
     sys.stdout.write("\nPassed : %d / %d cases\n" % (passed, cases))
 
-    T = time.time() - 1450401482
+    T = time.time() - 1450470713
     PT, TT = (T / 60.0, 75.0)
-    points = 500 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
+    points = 550 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
     sys.stdout.write("Time   : %d minutes %d secs\n" % (int(T/60), T%60))
     sys.stdout.write("Score  : %.2f points\n" % points)
 

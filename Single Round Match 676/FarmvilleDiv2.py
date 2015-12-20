@@ -1,29 +1,35 @@
 # -*- coding: utf-8 -*-
 import math,string,itertools,fractions,heapq,collections,re,array,bisect
 
-allchar = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-class SubstitutionCipher:
-    def notIn(self, s):
-        return "A"
+class FarmvilleDiv2:
+    def insertion_sort(self, time, cost, N):
+        for i in range(1, N):
+            v1 = time[i]
+            v2 = cost[i]
+            j = i - 1
+            while j >= 0 and cost[j] > v2:
+                time[j + 1] = time[j]
+                cost[j + 1] = cost[j]
+                j -= 1
+            time[j + 1] = v1
+            cost[j + 1] = v2
+        return time, cost
 
-    def decode(self, a, b, y):
-        cipher = {}
+    def minTime(self, time, cost, budget):
+        time = list(time)
+        cost = list(cost)
+        time, cost = self.insertion_sort(time, cost, len(cost))
 
-        for i in range(len(a)):
-            cipher[b[i]] = a[i]
+        ret = 0
 
-        if len(cipher) == 25:
-            remain_a = list(set(allchar) - set(a))[0]
-            remain_b = list(set(allchar) - set(b))[0]
-            cipher[remain_b] = remain_a
+        for t, c in zip(time, cost):
+            for i in range(t):
+                if budget - c >= 0:
+                    budget -= c
+                else:
+                    ret += 1
 
-        x = ""
-        for i in range(len(y)):
-            if y[i] not in cipher:
-                return ""
-            x += cipher[y[i]]
-
-        return x
+        return ret
 
 # CUT begin
 # TEST CODE FOR PYTHON {{{
@@ -53,12 +59,12 @@ def pretty_str(x):
     else:
         return str(x)
 
-def do_test(a, b, y, __expected):
+def do_test(time2, cost, budget, __expected):
     startTime = time.time()
-    instance = SubstitutionCipher()
+    instance = FarmvilleDiv2()
     exception = None
     try:
-        __result = instance.decode(a, b, y);
+        __result = instance.minTime(time2, cost, budget);
     except:
         import traceback
         exception = traceback.format_exc()
@@ -79,34 +85,40 @@ def do_test(a, b, y, __expected):
         return 0
 
 def run_tests():
-    sys.stdout.write("SubstitutionCipher (500 Points)\n\n")
+    sys.stdout.write("FarmvilleDiv2 (250 Points)\n\n")
 
     passed = cases = 0
     case_set = set()
     for arg in sys.argv[1:]:
         case_set.add(int(arg))
 
-    with open("SubstitutionCipher.sample", "r") as f:
+    with open("FarmvilleDiv2.sample", "r") as f:
         while True:
             label = f.readline()
             if not label.startswith("--"): break
 
-            a = f.readline().rstrip()
-            b = f.readline().rstrip()
-            y = f.readline().rstrip()
+            time2 = []
+            for i in range(0, int(f.readline())):
+                time2.append(int(f.readline().rstrip()))
+            time2 = tuple(time2)
+            cost = []
+            for i in range(0, int(f.readline())):
+                cost.append(int(f.readline().rstrip()))
+            cost = tuple(cost)
+            budget = int(f.readline().rstrip())
             f.readline()
-            __answer = f.readline().rstrip()
+            __answer = int(f.readline().rstrip())
 
             cases += 1
             if len(case_set) > 0 and (cases - 1) in case_set: continue
             sys.stdout.write("  Testcase #%d ... " % (cases - 1))
-            passed += do_test(a, b, y, __answer)
+            passed += do_test(time2, cost, budget, __answer)
 
     sys.stdout.write("\nPassed : %d / %d cases\n" % (passed, cases))
 
-    T = time.time() - 1450401482
+    T = time.time() - 1450454446
     PT, TT = (T / 60.0, 75.0)
-    points = 500 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
+    points = 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT))
     sys.stdout.write("Time   : %d minutes %d secs\n" % (int(T/60), T%60))
     sys.stdout.write("Score  : %.2f points\n" % points)
 

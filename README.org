@@ -9,12 +9,24 @@
   - 過去問アーカイブ: https://community.topcoder.com/tc?module=ProblemArchive
   - https://community.topcoder.com/stat?c=round_overview
   - 過去問解説:  http://apps.topcoder.com/wiki/display/tc/Algorithm+Problem+Set+Analysis
+  - division summary http://felix-halim.net/tc/
 
-  - アルゴリズムの可視化 http://ja.visualgo.net/
-
-** 他のブログ
+** 参戦記録
    - kmjp's blog http://kmjp.hatenablog.jp/archive/category/SRM
-   - 
+
+** 対策ページ
+   最強最速アルゴリズマー養成講座
+   - http://www.itmedia.co.jp/keywords/algorithmer.html
+
+   実践・最強最速のアルゴリズム勉強会:
+   - http://www.slideshare.net/chokudai/wap-atcoder1
+   - http://www.slideshare.net/chokudai/wap-atcoder2
+   - http://www.slideshare.net/chokudai/wap-atcoder3
+   - http://www.slideshare.net/chokudai/wap-atcoder4
+   - http://www.slideshare.net/chokudai/wap-atcoder5
+
+  TopCoder のページにある対策記事(英語)
+  - https://www.topcoder.com/community/data-science/data-science-tutorials/
 
 * My Site(Futurismo)
   - [[http://futurismo.biz/topcoder][目指せ！RedCoderへの道～アルゴリズムとデータ構造 (C++)～ | Futurismo]]
@@ -23,4 +35,3 @@
 ** python
    - [[http://futurismo.biz/archives/5287][リスト探索(線形探索・二分探索) – Python | Futurismo]]
    - [[http://futurismo.biz/archives/5146][ソートアルゴリズムのまとめと実装（Python) | Futurismo]]
-     

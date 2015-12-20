@@ -7,3 +7,7 @@
 ** ダイクストラ法
    - SRM 675 Div2 mid:
    - http://miffysora.wikidot.com/dijkstra
+
+** WL-Algorithms
+   - SRM575 Div2 mid: 
+   - SRM676 Div2 mid:
