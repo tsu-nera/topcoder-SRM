@@ -1,0 +1,109 @@
+-- Example 0
+aaaa
+zzzz
+8
+a a a z
+a a z a
+a z a a
+z a a a
+a z z z
+z a z z
+z z a z
+z z z a
+
+8
+-- Example 1
+aaaa
+bbbb
+0
+
+4
+-- Example 2
+aaaa
+mmnn
+0
+
+50
+-- Example 3
+aaaa
+zzzz
+4
+bz a a a
+a bz a a
+a a bz a
+a a a bz
+
+-1
+-- Example 4
+aaaa
+zzzz
+4
+cdefghijklmnopqrstuvwxyz a a a
+a cdefghijklmnopqrstuvwxyz a a
+a a cdefghijklmnopqrstuvwxyz a
+a a a cdefghijklmnopqrstuvwxyz
+
+6
+-- Example 5
+aaaa
+bbbb
+1
+b b b b
+
+-1
+-- Example 6
+zzzz
+aaaa
+50
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+abcdefghijkl abcdefghijkl abcdefghijkl abcdefghijk
+
+-1
